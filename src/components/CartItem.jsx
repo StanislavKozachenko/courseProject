@@ -24,7 +24,9 @@ export default function CartItem({ id, title, type, size, price, count, imageUrl
       </div>
       <div class="cart__item-info">
         <h3>{title}</h3>
-        <p>{type}, 26 см.</p>
+        <p>
+          {type}, {size}.
+        </p>
       </div>
       <div class="cart__item-count">
         <div

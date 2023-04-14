@@ -6,14 +6,16 @@ import './scss/app.scss';
 import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
 import { createContext, useState } from 'react';
-import AuthPage from './pages/AuthPage';
+import AuthPage from './pages/Auth';
+import Cookies from 'universal-cookie';
 export const SearchContext = createContext();
 export const SessionContext = createContext();
 
 function App() {
   const [searchValue, setSearchValue] = useState('');
   const [sessionValue, setSessionValue] = useState('No user');
-
+  const cookies = new Cookies();
+  if (sessionValue === 'No user' && cookies.get('user')) setSessionValue(cookies.get('user'));
   return (
     <div className="wrapper">
       <SessionContext.Provider value={{ sessionValue, setSessionValue }}>

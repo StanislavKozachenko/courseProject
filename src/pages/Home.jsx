@@ -21,7 +21,7 @@ export default function Home() {
   const isMounted = useRef(false);
 
   const categoryId = useSelector((state) => state.filter.categoryId);
-  const { items, status } = useSelector((state) => state.books);
+  const { books, booksStatus } = useSelector((state) => state.books);
   const sortType = useSelector((state) => state.filter.sort);
   const currentPage = useSelector((state) => state.filter.currentPage);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function Home() {
     dispatch(setCurrentPage(number));
   };
   const getBooks = async () => {
-    const search = searchValue ? `&search=${searchValue}` : '';
+    const search = searchValue ? `&title=${searchValue}` : '';
     dispatch(fetchBooks({ currentPage, categoryId, sortType, search }));
   };
 
@@ -78,7 +78,7 @@ export default function Home() {
         <Sort />
       </div>
       <h2 className="content__title">Все книги</h2>
-      {status === 'error' ? (
+      {booksStatus === 'error' ? (
         <div>
           <h2>
             Произошла ошибка <icon>😕</icon>
@@ -91,9 +91,9 @@ export default function Home() {
         </div>
       ) : (
         <div className="content__items">
-          {status === 'loading'
+          {booksStatus === 'loading'
             ? [...new Array(4)].map((_, index) => <Skeleton key={index} />)
-            : items.map((obj) => <BookBlock key={obj.id} {...obj} />)}
+            : books.map((obj) => <BookBlock key={obj.id} {...obj} />)}
         </div>
       )}
 

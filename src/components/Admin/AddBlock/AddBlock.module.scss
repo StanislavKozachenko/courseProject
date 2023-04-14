@@ -1,0 +1,38 @@
+.list td:first-child {
+  width: 5%;
+}
+.main {
+  max-height: 80vh;
+  overflow-x: scroll;
+}
+.input {
+  border: none;
+  outline: none;
+  text-align: center;
+}
+.book td:first-child input {
+  width: 80px;
+}
+td select {
+  font-size: 14px;
+}
+.saveBtn {
+  border: 1px;
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 30px;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover {
+    background-color: #282828;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #282828;
+    color: #fff;
+  }
+}

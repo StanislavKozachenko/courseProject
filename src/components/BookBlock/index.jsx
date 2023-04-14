@@ -6,6 +6,9 @@ import { addItem } from '../../Redux/slices/cartSlice';
 const bookTypes = ['твёрдый', 'мягкий'];
 
 export default function BookBlock({ id, title, price, imageUrl, sizes, types }) {
+  types = types.split(',');
+  sizes = sizes.split(',');
+
   const dispath = useDispatch();
   const cartItem = useSelector((state) => state.cart.items.find((obj) => obj.id === id));
   const addedCount = cartItem ? cartItem.count : 0;
@@ -19,7 +22,7 @@ export default function BookBlock({ id, title, price, imageUrl, sizes, types }) 
       price,
       imageUrl,
       type: bookTypes[activeType],
-      size: activeSize,
+      size: sizes[activeSize],
     };
     dispath(addItem(item));
   };

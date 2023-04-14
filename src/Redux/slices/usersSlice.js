@@ -2,7 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchUsers = createAsyncThunk('user/fetchUsersStatus', async (params, thunkAPI) => {
-  const { data } = await axios.get(`https://63d554b90e7ae91a00ac4e8e.mockapi.io/users`);
+  const { data } = await axios.get(
+    // `https://63d554b90e7ae91a00ac4e8e.mockapi.io/users`
+    `http://localhost:8080/users/all`,
+  );
   if (data.length === 0) {
     return thunkAPI.rejectWithValue('Пользователей нет');
   }

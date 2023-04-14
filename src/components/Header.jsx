@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import logoSvg from '../assets/img/books.png';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Search from './Search';
 import { selectCart } from '../Redux/slices/cartSlice';
 import Cookies from 'universal-cookie';
+import { useEffect } from 'react';
+import { SessionContext } from '../App';
+import { useContext } from 'react';
 
 export default function Header() {
   const { items, totalPrice } = useSelector(selectCart);
+  const { sessionValue, setSessionValue } = useContext(SessionContext);
   const cookies = new Cookies();
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  useEffect(() => {}, [sessionValue]);
   return (
     <div className="header">
       <div className="container">
@@ -61,10 +66,10 @@ export default function Header() {
           </div>
           <div className="auth">
             <Link to="/auth" className="button button--auth button--cart">
-              {!cookies.get('userEmail') ? (
+              {!cookies.get('user') ? (
                 <span>Войти</span>
               ) : (
-                <span>{cookies.get('userEmail').split(' ')[1]}</span>
+                <span>{cookies.get('user').split(' ')[1]}</span>
               )}
             </Link>
           </div>
