@@ -357,6 +357,7 @@ body {
     &:active {
       background-color: #282828;
       color: #fff;
+      transform: translateY(1px);
     }
   }
   &__input {
@@ -397,6 +398,7 @@ body {
       &:active {
         background-color: #282828;
         color: #fff;
+        transform: translateY(1px);
       }
     }
   }

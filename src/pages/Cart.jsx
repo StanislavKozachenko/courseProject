@@ -100,7 +100,7 @@ export default function Cart() {
                   Всего книг: <b>{totalCount} шт.</b>
                 </span>
                 <span>
-                  Сумма заказа: <b>{totalPrice} руб.</b>
+                  Сумма заказа: <b>{totalPrice.toFixed(2)} руб.</b>
                 </span>
               </div>
               <div class="cart__bottom-buttons">

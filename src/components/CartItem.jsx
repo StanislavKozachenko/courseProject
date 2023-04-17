@@ -66,7 +66,7 @@ export default function CartItem({ id, title, type, size, price, count, imageUrl
         </div>
       </div>
       <div class="cart__item-price">
-        <b>{price * count} руб.</b>
+        <b>{(price * count).toFixed(2)} руб.</b>
       </div>
       <div class="cart__item-remove">
         <div onClick={onClickRemove} class="button button--outline button--circle">

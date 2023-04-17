@@ -11,6 +11,9 @@ import { fetchTransactions } from '../Redux/slices/transactionsSlice';
 import { fetchOrders } from '../Redux/slices/ordersSlice';
 import ShowOrders from '../components/ShowOrders/ShowOrders';
 import ShowTransactions from '../components/Admin/ShowTransactions/ShowTransactions';
+import Report from '../components/Admin/Report/Report';
+import Diagram from '../components/Admin/Diagram/Diagram';
+import CalculateProfit from '../components/Admin/CalculateProfit/CalculateProfit';
 export const AdminContext = createContext();
 
 export default function Admin() {
@@ -72,6 +75,7 @@ export default function Admin() {
         <div className="admin-container">
           <div>
             <select
+              className="selectAdminAction"
               name="selectAction"
               id="selectAction"
               onChange={selectActionHandler}
@@ -82,6 +86,9 @@ export default function Admin() {
               <option value="delete">Удалить книгу</option>
               <option value="orders">Просмотреть заказы</option>
               <option value="transactions">Просмотреть транзакции</option>
+              <option value="calc">Рассчитать прибыль</option>
+              <option value="report">Отчёт продаж</option>
+              <option value="diagram">Диаграмма продаж</option>
             </select>
           </div>
           <div>
@@ -95,6 +102,12 @@ export default function Admin() {
               <ShowOrders context={AdminContext} />
             ) : selectedAction === 'transactions' ? (
               <ShowTransactions />
+            ) : selectedAction === 'diagram' ? (
+              <Diagram />
+            ) : selectedAction === 'calc' ? (
+              <CalculateProfit />
+            ) : selectedAction === 'report' ? (
+              <Report />
             ) : (
               <ShowBlock />
             )}

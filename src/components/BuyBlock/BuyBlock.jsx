@@ -6,6 +6,15 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 export default function BuyBlock({ items, totalPrice, setIsBuying, isBuying }) {
   const cookies = new Cookies();
+  const bookTypes = ['твёрдый', 'мягкий'];
+  const categoryTypes = [
+    'все',
+    'психология',
+    'бестеллеры',
+    'биография',
+    'бизнес',
+    'художественная',
+  ];
   const [id, setId] = useState(false);
   useEffect(() => {
     let value = cookies.get('user');
@@ -62,8 +71,11 @@ export default function BuyBlock({ items, totalPrice, setIsBuying, isBuying }) {
   return (
     <div className="container">
       {id ? (
-        <div class="cart__bottom-buttons" onClick={() => buy()}>
-          <button className="button button--outline button--add">Подтвердить</button>
+        <div>
+          <h3>Для подтверждения нажмте на кнопку</h3>
+          <div class="cart__bottom-buttons" onClick={() => buy()}>
+            <button className="button button--outline button--add">Подтвердить заказ</button>
+          </div>
         </div>
       ) : (
         <div>
