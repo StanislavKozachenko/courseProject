@@ -2,9 +2,13 @@ package stanislav.kozachenko.bookShop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import stanislav.kozachenko.bookShop.model.Book;
 import stanislav.kozachenko.bookShop.model.Order;
 import stanislav.kozachenko.bookShop.service.OrderService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,6 +27,14 @@ public class OrderController {
     @GetMapping("/")
     public List<Order> getOrdersByUserId(@RequestParam int userId)
     {return orderService.findOrdersByUserId(userId);}
+
+    @GetMapping("/report")
+    public List<Order> findOrderByDate(@RequestParam String from,
+                                       @RequestParam String to) throws ParseException {
+        Date dateFrom = new SimpleDateFormat("yyyy-MM-dd").parse(from);
+        Date dateTo = new SimpleDateFormat("yyyy-MM-dd").parse(to);
+        return orderService.findOrderByDate(dateFrom, dateTo);
+    }
 
     @GetMapping("/all")
     public List<Order> getAllOrders()

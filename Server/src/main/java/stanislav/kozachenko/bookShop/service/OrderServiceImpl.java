@@ -6,6 +6,8 @@ import stanislav.kozachenko.bookShop.exception.OrderNotFoundException;
 import stanislav.kozachenko.bookShop.model.Order;
 import stanislav.kozachenko.bookShop.repository.OrderRepository;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -53,5 +55,20 @@ public class OrderServiceImpl implements OrderService{
         }
         orderRepository.deleteById(id);
         return "Order with id "+id+"has been deleted successfully.";
+    }
+
+    @Override
+    public List<Order> findOrderByDate(Date orderFrom, Date orderTo) {
+        List<Order> buffer;
+        List<Order> result = new ArrayList<>();
+        buffer = orderRepository.findAll();
+
+        for(Order item: buffer){
+            Date date = item.getOrderDate();
+            if((date.compareTo(orderFrom) >= 0 && date.compareTo(orderTo) <= 0)) {
+                result.add(item);
+            }
+        }
+        return result;
     }
 }
